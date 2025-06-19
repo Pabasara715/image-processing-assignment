@@ -2,6 +2,7 @@ import os
 
 from tasks.utils import load_image_as_numpy, get_grayscale_image, show_images
 from tasks.task1_intensity import reduce_intensity_levels
+from tasks.task2_averaging import apply_average_filter_manual
 
 def run_all_tasks():
     """Main script to execute all assignment tasks."""
@@ -29,6 +30,16 @@ def run_all_tasks():
         save_path=os.path.join(results_dir, 'task1_intensity_reduction.png')
     )
 
+    # --- Execute Task 2: Spatial Averaging ---
+    print("\n--- Running Task 2: Spatial Averaging ---")
+    kernels_to_test = [3, 10, 20]
+    averaged_images = [apply_average_filter_manual(original_image_color, k) for k in kernels_to_test]
+    show_images(
+        [original_image_color] + averaged_images,
+        ['Original'] + [f'{k}x{k} Average' for k in kernels_to_test],
+        save_path=os.path.join(results_dir, 'task2_spatial_averaging.png')
+    )
+    
     print("\nAll tasks completed. Results saved in '{}' directory.".format(results_dir))
 
 if __name__ == '__main__':
