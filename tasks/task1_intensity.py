@@ -2,7 +2,6 @@ import numpy as np
 
 def reduce_intensity_levels(image, levels):
     """Reduces the number of intensity levels in a grayscale image."""
-    # (Copy the function code from the previous answer here)
     if not (levels > 1 and (levels & (levels - 1) == 0)):
         raise ValueError("Number of levels must be an integer power of 2 greater than 1.")
     factor = 256 // levels
